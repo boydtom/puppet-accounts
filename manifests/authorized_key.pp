@@ -15,7 +15,6 @@ define accounts::authorized_key (
   Optional[Hash] $ssh_keys         = $accounts::ssh_keys,
 ) {
   # Retrieve $ssh_keys and $users in the current scope
-  $ssh_keys = $accounts::ssh_keys
   $users    = $accounts::users
 
   if $ssh_key =~ /^@(\S+)$/ {
