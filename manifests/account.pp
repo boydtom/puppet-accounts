@@ -77,7 +77,7 @@ define accounts::account (
         default => $home,
       }
 
-      $hash = merge(
+      $hash = stdlib::merge(
         {
           ensure     => $ensure,
           comment    => $comment,
@@ -97,7 +97,7 @@ define accounts::account (
       )
 
       if versioncmp($facts['puppetversion'], '3.6.0') >= 0 {
-        $_hash = merge(
+        $_hash = stdlib::merge(
           $hash,
           {
             purge_ssh_keys => $_purge_ssh_keys,
@@ -126,7 +126,7 @@ define accounts::account (
           ssh_authorized_key_title => $ssh_authorized_key_title,
         }
       } elsif ($authorized_keys =~ Hash) {
-        $tmp_hash = merge({ "${name}" => {}, }, $authorized_keys)
+        $tmp_hash = stdlib::merge({ "${name}" => {}, }, $authorized_keys)
         $_authorized_keys = hash(
           zip(suffix(keys($tmp_hash), "-on-${name}"), values($tmp_hash))
         )
