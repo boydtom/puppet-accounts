@@ -77,7 +77,7 @@ define accounts::account (
         default => $home,
       }
 
-      $hash = stdlib::merge(
+      $hash = merge(
         {
           ensure     => $ensure,
           comment    => $comment,
