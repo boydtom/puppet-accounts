@@ -106,6 +106,14 @@ define accounts::account (
       } else {
         $_hash = $hash
       }
+
+      if $ensure != absent {
+        ensure_resource(
+          group,
+          $user,
+          {gid => $_hash[gid]}
+        )
+      }
       ensure_resource(
         user,
         $user,
